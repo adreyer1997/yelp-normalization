@@ -3,7 +3,7 @@ import json
 from tqdm import tqdm
 
 import config
-from src.subset import sub_users, sub_businesses
+from subset import sub_users, sub_businesses
 
 SUB_FILE = "./out/reviews_subset_{}.json".format(config.SUBSET_SETTINGS['PERC'])
 
