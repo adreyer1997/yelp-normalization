@@ -11,7 +11,6 @@ NORMALIZE_SETTINGS = {
     "REVIEW_FILE": "../yelp/yelp_dataset/review.json",
     "USERS_FILE": "../yelp/yelp_dataset/user.json",
     "PHOTOS_FILE": "../yelp/yelp_photos/photo.json",
-    "SIM_FILE": "./out/alarms.csv"
 }
 
 # Generate subset of data and clean user friends that aren't in table
@@ -32,6 +31,5 @@ PREPARE_SETTINGS = {
     "PREPARE_BUS": True,
     "PREPARE_REV": True,
     "PREPARE_USE": True,
-    "PREPARE_SIM": True,
     "PREPARE_PHOTOS": True
 }

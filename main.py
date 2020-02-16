@@ -29,9 +29,9 @@ def normalize_file(norm_setting_file, norm_module):
 
 if __name__ == "__main__":
     import config
-    from norm import normalize_businesses, normalize_reviews, normalize_users, normalize_sim, normalize_photos
+    from norm import normalize_businesses, normalize_reviews, normalize_users, normalize_photos
     from subset import sub_businesses, sub_reviews, sub_users, sub_photos
-    from prep_csv import csv_businesses, csv_reviews, csv_users, csv_sim, csv_photos
+    from prep_csv import csv_businesses, csv_reviews, csv_users, csv_photos
 
     if os.path.exists("./out") is False:
         os.mkdir("./out")
@@ -54,12 +54,6 @@ if __name__ == "__main__":
             print("[INFO] Normalizing reviews...")
             normalize_file(norm_setting_file=config.NORMALIZE_SETTINGS["REVIEW_FILE"],
                            norm_module=normalize_reviews)
-        # Normalize sim data
-        if config.NORMALIZE_SETTINGS["NORMALIZE_SIM"] is True:
-            print("[INFO] Normalizing simulation data...")
-            normalize_sim.write_header()
-            normalize_file(norm_setting_file=config.NORMALIZE_SETTINGS["SIM_FILE"],
-                           norm_module=normalize_sim)
 
         # Normalize photos
         if config.NORMALIZE_SETTINGS["NORMALIZE_PHOTOS"] is True:
@@ -110,11 +104,6 @@ if __name__ == "__main__":
         if config.PREPARE_SETTINGS["PREPARE_USE"] is True:
             print("[INFO] Preparing users as CSV...")
             csv_users.write_csv(sub_users.SUB_FILE)
-
-        # CSV sim
-        if config.PREPARE_SETTINGS["PREPARE_SIM"] is True:
-            print("[INFO] Preparing PHO simulation as CSV...")
-            csv_sim.write_csv(normalize_sim.NORM_FILE)
 
         # CSV Photos
         if config.PREPARE_SETTINGS["PREPARE_PHOTOS"] is True:
