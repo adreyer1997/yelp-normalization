@@ -11,6 +11,7 @@ NORMALIZE_SETTINGS = {
     "REVIEW_FILE": "../yelp/yelp_dataset/review.json",
     "USERS_FILE": "../yelp/yelp_dataset/user.json",
     "PHOTOS_FILE": "../yelp/yelp_photos/photo.json",
+    "PHOTOS_DIR": "../yelp/yelp_photos/photos/"
 }
 
 # Generate subset of data and clean user friends that aren't in table
@@ -20,6 +21,7 @@ SUBSET_SETTINGS = {
     "SUB_REV": True,
     "SUB_USE": True,
     "SUB_PHOTOS": True,
+    "SUB_PHOTO_INFO": True,
     "PERC": 0.01
 }
 

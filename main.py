@@ -1,3 +1,7 @@
+import sys
+sys.path.append('/home/andrei/Documents/University/2020/Honours Project/yelp-normalization')
+sys.path.append('/home/andrei/Documents/University/2020/Honours Project/yelp-normalization/src')
+
 import os
 
 from tqdm import tqdm
@@ -30,7 +34,7 @@ def normalize_file(norm_setting_file, norm_module):
 if __name__ == "__main__":
     import config
     from norm import normalize_businesses, normalize_reviews, normalize_users, normalize_photos
-    from subset import sub_businesses, sub_reviews, sub_users, sub_photos
+    from subset import sub_businesses, sub_reviews, sub_users, sub_photos, sub_photo
     from prep_csv import csv_businesses, csv_reviews, csv_users, csv_photos
 
     if os.path.exists("./out") is False:
@@ -81,12 +85,18 @@ if __name__ == "__main__":
             sub_reviews.generate_subset(f_dir=normalize_reviews.NORM_FILE,
                                         perc=config.SUBSET_SETTINGS["PERC"])
 
-        # Subset Photos
-        if config.SUBSET_SETTINGS["SUB_PHOTOS"] is True:
-            print("[INFO] Generating subset of photos...")
+        # Subset Photo Information
+        if config.SUBSET_SETTINGS["SUB_PHOTO_INFO"] is True:
+            print("[INFO] Generating subset of photos information...")
             sub_photos.generate_subset(f_dir=normalize_photos.NORM_FILE,
                                        perc=config.SUBSET_SETTINGS["PERC"])
-            
+
+        # Subset Photo images
+        if config.SUBSET_SETTINGS["SUB_PHOTOS"] is True:
+            print("[INFO] Generating subset of photo")
+            sub_photo.generate_subset(f_dir=sub_photos.SUB_FILE, 
+                                      photos_dir=config.NORMALIZE_SETTINGS["PHOTOS_DIR"],
+                                      training_dir='./out/training_photos')
 
     if config.PREPARE_CSV is True:
         print("|--- Generating CSV from Data Subsets --|")
@@ -108,4 +118,4 @@ if __name__ == "__main__":
         # CSV Photos
         if config.PREPARE_SETTINGS["PREPARE_PHOTOS"] is True:
             print("[INFO] Preparing photos as CSV")
-            csv_photos.write_csv(normalize_photos.NORM_FILE)
+            csv_photos.write_csv(sub_photos.SUB_FILE)

@@ -24,14 +24,14 @@ def strip_friends(line, user_ids):
 
     user_line['user_id'] = data['user_id']
     user_line['name'] = data['name']
-    user_line['review_count'] = data['review_count']
+    # user_line['review_count'] = data['review_count']
     user_line['yelping_since'] = data['yelping_since']
     user_line['useful'] = data['useful']
     user_line['funny'] = data['funny']
     user_line['cool'] = data['cool']
     user_line['friends'] = stripped_list
     user_line['fans'] = data['fans']
-    user_line['average_stars'] = data['average_stars']
+    # user_line['average_stars'] = data['average_stars']
 
     return json.dumps(user_line)
 
