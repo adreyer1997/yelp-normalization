@@ -1,11 +1,14 @@
 import sys
+from pprint import pprint
+
 sys.path.append('/home/andrei/Documents/University/2020/Honours Project/yelp-normalization')
 sys.path.append('/home/andrei/Documents/University/2020/Honours Project/yelp-normalization/src')
+
+from style.styles import style
 
 import os
 
 from tqdm import tqdm
-
 
 def normalize(file_dir, out_dir, process_line):
     fr = open(file_dir, 'r')
@@ -20,7 +23,6 @@ def normalize(file_dir, out_dir, process_line):
     fr.close()
     fw.close()
 
-
 def normalize_file(norm_setting_file, norm_module):
     if not os.path.isfile(norm_setting_file) is True:
         print('[WARN]', norm_setting_file, ' is not a file! Skipping...')
@@ -33,14 +35,20 @@ def normalize_file(norm_setting_file, norm_module):
 
 if __name__ == "__main__":
     import config
+
+    from configure_settings import run_configurations
     from norm import normalize_businesses, normalize_reviews, normalize_users, normalize_photos
     from subset import sub_businesses, sub_reviews, sub_users, sub_photos, sub_photo
     from prep_csv import csv_businesses, csv_reviews, csv_users, csv_photos
 
+    run_configurations()
+
     if os.path.exists("./out") is False:
         os.mkdir("./out")
 
+
     print("<--- Yelp Normalizer --->")
+
     if config.NORMALIZE_DATASET is True:
         print("|--- Normalizing Original Data --|")
         # Normalize businesses
@@ -85,14 +93,12 @@ if __name__ == "__main__":
             sub_reviews.generate_subset(f_dir=normalize_reviews.NORM_FILE,
                                         perc=config.SUBSET_SETTINGS["PERC"])
 
-        # Subset Photo Information
-        if config.SUBSET_SETTINGS["SUB_PHOTO_INFO"] is True:
+        # Subset Photo images
+        if config.SUBSET_SETTINGS["SUB_PHOTOS"] is True:
             print("[INFO] Generating subset of photos information...")
             sub_photos.generate_subset(f_dir=normalize_photos.NORM_FILE,
                                        perc=config.SUBSET_SETTINGS["PERC"])
 
-        # Subset Photo images
-        if config.SUBSET_SETTINGS["SUB_PHOTOS"] is True:
             print("[INFO] Generating subset of photo")
             sub_photo.generate_subset(f_dir=sub_photos.SUB_FILE, 
                                       photos_dir=config.NORMALIZE_SETTINGS["PHOTOS_DIR"],

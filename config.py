@@ -2,11 +2,11 @@
 # specified too
 NORMALIZE_DATASET = True
 NORMALIZE_SETTINGS = {
-    "NORMALIZE_BUS": True,
-    "NORMALIZE_REV": True,
-    "NORMALIZE_USE": True,
-    "NORMALIZE_SIM": True,
-    "NORMALIZE_PHOTOS": True,
+    "NORMALIZE_BUS": False,
+    "NORMALIZE_REV": False,
+    "NORMALIZE_USE": False,
+    "NORMALIZE_SIM": False,
+    "NORMALIZE_PHOTOS": False,
     "BUSINESS_FILE": "../yelp/yelp_dataset/business.json",
     "REVIEW_FILE": "../yelp/yelp_dataset/review.json",
     "USERS_FILE": "../yelp/yelp_dataset/user.json",
@@ -17,11 +17,10 @@ NORMALIZE_SETTINGS = {
 # Generate subset of data and clean user friends that aren't in table
 GEN_SUBSET = True
 SUBSET_SETTINGS = {
-    "SUB_BUS": True,
-    "SUB_REV": True,
-    "SUB_USE": True,
-    "SUB_PHOTOS": True,
-    "SUB_PHOTO_INFO": True,
+    "SUB_BUS": False,
+    "SUB_REV": False,
+    "SUB_USE": False,
+    "SUB_PHOTOS": False,
     "PERC": 0.01
 }
 
@@ -30,8 +29,8 @@ SUBSET_SETTINGS = {
 # NORMALIZE_SETTINGS.
 PREPARE_CSV = True
 PREPARE_SETTINGS = {
-    "PREPARE_BUS": True,
-    "PREPARE_REV": True,
-    "PREPARE_USE": True,
-    "PREPARE_PHOTOS": True
+    "PREPARE_BUS": False,
+    "PREPARE_REV": False,
+    "PREPARE_USE": False,
+    "PREPARE_PHOTOS": False
 }
