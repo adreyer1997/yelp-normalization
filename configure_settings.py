@@ -89,13 +89,19 @@ def run_configurations():
     csv_answers = prompt(configure_csv(), style=style)
 
     for key, val in normalize_answers.items():
+        if len(val) > 0:
+            config.NORMALIZE_DATASET = True
         for option in val:
             config.NORMALIZE_SETTINGS[option] = True
 
     for key, val in subset_answers.items():
+        if len(val) > 0:
+            config.GEN_SUBSET = True
         for option in val:
             config.SUBSET_SETTINGS[option] = True
 
     for key, val in csv_answers.items():
+        if len(val) > 0:
+            config.PREPARE_CSV = True
         for option in val:
             config.PREPARE_SETTINGS[option] = True

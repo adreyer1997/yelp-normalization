@@ -1,6 +1,6 @@
 # Does the dataset need to be normalized? If so, the locations need to be 
 # specified too
-NORMALIZE_DATASET = True
+NORMALIZE_DATASET = False
 NORMALIZE_SETTINGS = {
     "NORMALIZE_BUS": False,
     "NORMALIZE_REV": False,
@@ -15,7 +15,7 @@ NORMALIZE_SETTINGS = {
 }
 
 # Generate subset of data and clean user friends that aren't in table
-GEN_SUBSET = True
+GEN_SUBSET = False
 SUBSET_SETTINGS = {
     "SUB_BUS": False,
     "SUB_REV": False,
@@ -27,7 +27,7 @@ SUBSET_SETTINGS = {
 # The CSV format is used for TigerGraph's offline batch loader. The dataset
 # needs to be normalized to use this option and will refer to the files in
 # NORMALIZE_SETTINGS.
-PREPARE_CSV = True
+PREPARE_CSV = False
 PREPARE_SETTINGS = {
     "PREPARE_BUS": False,
     "PREPARE_REV": False,
