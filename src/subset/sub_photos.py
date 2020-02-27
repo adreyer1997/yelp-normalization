@@ -1,5 +1,7 @@
-from tqdm import tqdm
+import json
 import config
+
+from tqdm import tqdm
 
 SUB_FILE = "./out/photos_subset_{}.json".format(config.SUBSET_SETTINGS['PERC'])
 
@@ -12,8 +14,11 @@ def generate_subset(f_dir, perc):
     fr.seek(0)
     with tqdm(total=sub_num) as pbar:
         for line in fr:
-            fw.write(line)
-            pbar.update(1)
+            data = json.loads(line)
+            if data["caption"] != "":
+                fw.write(line)
+                pbar.update(1)
+
             if pbar.n == sub_num - 1:
                 break
     fr.close()

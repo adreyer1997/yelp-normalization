@@ -20,7 +20,7 @@ def configure_normalize():
                         'name': 'NORMALIZE_USE',
                     },
                     {
-                        'name': 'NORMALIZE_SIM'
+                        'name': 'NORMALIZE_PHOTOS'
                     },
                 ]    
             }
