@@ -1,8 +1,8 @@
 import sys
 from pprint import pprint
 
-sys.path.append('/home/andrei/Documents/University/2020/Honours Project/yelp-normalization')
-sys.path.append('/home/andrei/Documents/University/2020/Honours Project/yelp-normalization/src')
+sys.path.append('/home/andrei-ubuntu/Documents/University/2020/Honours Project/yelp-normalization')
+sys.path.append('/home/andrei-ubuntu/Documents/University/2020/Honours Project/yelp-normalization/src')
 
 from style.styles import style
 
