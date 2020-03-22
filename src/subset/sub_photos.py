@@ -3,6 +3,9 @@ import config
 
 from tqdm import tqdm
 from subset import sub_businesses
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+import string
 
 SUB_FILE = "./out/photos_subset_{}.json".format(config.SUBSET_SETTINGS['PERC'])
 
@@ -21,7 +24,7 @@ def generate_subset(f_dir, perc):
     with tqdm(total=sub_num) as pbar:
         for line in fr:
             data = json.loads(line)
-            if data["caption"] != "" and data["business_id"] in businesses:
+            if process_caption(data['caption']) and data["business_id"] in businesses:
                 fw.write(line)
                 pbar.update(1)
 
@@ -29,3 +32,22 @@ def generate_subset(f_dir, perc):
                 break
     fr.close()
     fw.close()
+
+
+def process_caption(caption):
+    table = str.maketrans('', '', string.punctuation)
+
+    tokens = word_tokenize(caption)
+    tokens = [w.lower() for w in tokens]
+    stripped = [w.translate(table) for w in tokens]
+
+    words = [word for word in stripped if word.isalpha()]
+
+    stop_words = set(stopwords.words('english'))
+
+    words = [w for w in words if not w in stop_words]
+
+    if len(words) > 2:
+        return True
+
+    return False
